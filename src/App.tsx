@@ -1,5 +1,6 @@
 //importera states
 
+import AddTodo from "./components/AddTodo"
 import TodoList from "./components/TodoList"
 
 
@@ -11,6 +12,7 @@ function App() {
 
       <TodoList />
 
+      <AddTodo />
     </main>
   )
 }

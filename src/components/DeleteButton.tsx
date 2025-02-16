@@ -16,7 +16,7 @@ function DeleteButton({ todoId, onDelete }: { todoId: string; onDelete: Function
 
             onDelete();
         } catch (error) {
-            setError("Det blev ett fel vid uppdatering av poster...");
+            setError("Det blev fel");
         }
     }
 

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
 import Todo from "./Todo"
 
-interface TodoInterface {
-    _id: string,
+export interface TodoInterface {
+    _id?: string,
     title: string,
     description: string,
     status: string
@@ -43,7 +43,6 @@ function TodoList() {
 
     return (
         <section>
-
             {loading && <p>Laddar...</p>}
             {error && <p>{error}</p>}
 

@@ -20,7 +20,7 @@ function Todo({ todo, onTodoUpdate }: { todo: any, onTodoUpdate: Function }) {
             });
 
             if (!res.ok) {
-                throw Error("Det blev ett fel: " + res.status);
+                throw new Error("Det blev ett fel: " + res.status);
             }
 
             onTodoUpdate();
