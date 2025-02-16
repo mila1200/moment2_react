@@ -1,25 +1,25 @@
 import { useState } from "react";
 import DeleteButton from "./DeleteButton";
 
-function Todo({todo, onTodoUpdate} : {todo: any, onTodoUpdate: Function}) {
-        //errorstate
-      const [error, setError] = useState<string | null>(null)
+function Todo({ todo, onTodoUpdate }: { todo: any, onTodoUpdate: Function }) {
+    //errorstate
+    const [error, setError] = useState<string | null>(null)
 
-    const updateTodo = async (e : any) => {
+    const updateTodo = async (e: any) => {
         let newStatus = e.target.value;
 
-        const newTodo = {...todo, status: newStatus};
+        const newTodo = { ...todo, status: newStatus };
 
         try {
             const res = await fetch("http://localhost:5000/todo/" + todo._id, {
                 method: "PUT",
                 headers: {
-                    "Content-type": "application/json" 
+                    "Content-type": "application/json"
                 },
                 body: JSON.stringify(newTodo)
             });
 
-            if(!res.ok) {
+            if (!res.ok) {
                 throw Error("Det blev ett fel: " + res.status);
             }
 
@@ -30,24 +30,24 @@ function Todo({todo, onTodoUpdate} : {todo: any, onTodoUpdate: Function}) {
         }
     }
 
-  return (
-    <article>
-        <h2>{todo.title}</h2>
-        <p>{todo.description}</p>
-        <p>{todo.status}</p>
-        <form>
-            <label htmlFor="status">Ändra status:</label>
-            <br />
-            <select name="status" id="status" defaultValue={todo.status}
-            onChange={updateTodo}>
-                <option>Ej påbörjad</option>
-                <option>Påbörjad</option>
-                <option>Avklarad</option>
-            </select>
-            <button type="submit" name="delete"></button>
-        </form>
-    </article>
-  )
+    return (
+        <article>
+            <h2>{todo.title}</h2>
+            <p>{todo.description}</p>
+            <p>{todo.status}</p>
+            <form>
+                <label htmlFor="status">Ändra status:</label>
+                <br />
+                <select name="status" id="status" defaultValue={todo.status}
+                    onChange={updateTodo}>
+                    <option>Ej påbörjad</option>
+                    <option>Påbörjad</option>
+                    <option>Avklarad</option>
+                </select>
+            </form>
+            <DeleteButton todoId={todo._id} onDelete={onTodoUpdate}/>
+        </article>
+    )
 }
 
 export default Todo
