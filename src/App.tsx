@@ -53,7 +53,7 @@ function App() {
       <section>
         {
           todos.map((todo) => (
-            <Todo todo={todo} key={todo._id} />
+            <Todo todo={todo} key={todo._id} onTodoUpdate={fetchData}/>
           ))
         }
       </section>
