@@ -1,5 +1,6 @@
 import { useState } from "react";
 import DeleteButton from "./DeleteButton";
+import "./Todo.css"
 
 function Todo({ todo, onTodoUpdate }: { todo: any, onTodoUpdate: Function }) {
     //errorstate
@@ -31,12 +32,12 @@ function Todo({ todo, onTodoUpdate }: { todo: any, onTodoUpdate: Function }) {
     }
 
     return (
-        <article>
+        <article className="todoArticle">
             <h2>{todo.title}</h2>
             <p>{todo.description}</p>
             <p>{todo.status}</p>
             <form>
-                <label htmlFor="status">Ändra status:</label>
+                <label htmlFor="status"><strong>Ändra status:</strong></label>
                 <br />
                 <select name="status" id="status" defaultValue={todo.status}
                     onChange={updateTodo}>
@@ -45,7 +46,7 @@ function Todo({ todo, onTodoUpdate }: { todo: any, onTodoUpdate: Function }) {
                     <option>Avklarad</option>
                 </select>
                 <br />
-                {error && <span>{error}</span>}
+                {error && <span className="errorMsg">{error}</span>}
             </form>
             <DeleteButton todoId={todo._id} onDelete={onTodoUpdate}/>
         </article>

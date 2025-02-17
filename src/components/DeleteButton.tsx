@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./DeleteButton.css"
 
 function DeleteButton({ todoId, onDelete }: { todoId: string; onDelete: Function}) {
 
@@ -23,9 +24,9 @@ function DeleteButton({ todoId, onDelete }: { todoId: string; onDelete: Function
 
   return (
     <>
-    <button onClick={deleteTodo}>Radera</button>
+    <button className="deleteBtn" onClick={deleteTodo}>Radera</button>
     <br />
-    {error && <span>{error}</span>}
+    {error && <span className="errorMsg">{error}</span>}
     </>
   )
 }

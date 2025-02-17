@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import Todo from "./Todo"
 import AddTodo from "./AddTodo"
+import "./TodoList.css"
 
 export interface TodoInterface {
     _id?: string,
@@ -49,7 +50,9 @@ function TodoList() {
 
             {
                 todos.map((todo) => (
+                    <div className="todoContainer">
                     <Todo todo={todo} key={todo._id} onTodoUpdate={fetchData} />
+                    </div>
                 ))
             }
 

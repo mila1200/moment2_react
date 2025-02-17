@@ -1,0 +1,35 @@
+.formSection {
+    width: 95%;
+    border: 1px solid black;
+    margin: 0 auto;
+}
+
+.formContainer {
+   width: 90%;
+   margin: 2% auto;
+}
+
+.inputForm {
+    margin: 0 auto;
+}
+
+.inputForm label {
+    font-size: 1.2em;
+}
+
+.inputForm input, .inputForm select, .inputForm textarea {
+    padding: 8px;
+    width: 95%;
+    font-size: 16px;
+}
+
+.inputForm textarea {
+    height: 100px;
+}
+
+.inputForm input[type="submit"] {
+    background-color: purple;
+    color: white;
+    padding: 10px;
+    margin-top: 2%;
+}

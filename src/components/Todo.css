@@ -1,0 +1,17 @@
+.todoArticle {
+    margin: 1%;
+    padding: 2%;
+}
+
+.todoArticle h2, .todoArticle p, .todoArticle label, .todoArticle select {
+    margin: 1%;
+}
+
+.todoArticle select {
+    padding: 8px;
+    width: 95%;
+}
+
+.errorMsg {
+    color: red;
+}
