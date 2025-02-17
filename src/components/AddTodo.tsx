@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { TodoInterface } from "./TodoList";
 
-function AddTodo() {
+function AddTodo({fetchData}: {fetchData: Function}) {
 
     //state för interfacet, importerat från TodoList
     const [formData, setFormData] = useState<TodoInterface>({
@@ -27,6 +27,14 @@ function AddTodo() {
             if (!res.ok) {
                 throw new Error("Det blev ett fel: " + res.status);
             }
+
+            fetchData();
+
+            setFormData({
+                title: "",
+                description: "",
+                status: "Ej påbörjad"
+            })
 
         } catch (error) {
             setError("Det blev fel när du försökte lägga till poster");

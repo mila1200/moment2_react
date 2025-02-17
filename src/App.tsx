@@ -12,7 +12,6 @@ function App() {
 
       <TodoList />
 
-      <AddTodo />
     </main>
   )
 }

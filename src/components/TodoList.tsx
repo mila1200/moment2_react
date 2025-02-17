@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import Todo from "./Todo"
+import AddTodo from "./AddTodo"
 
 export interface TodoInterface {
     _id?: string,
@@ -51,6 +52,8 @@ function TodoList() {
                     <Todo todo={todo} key={todo._id} onTodoUpdate={fetchData} />
                 ))
             }
+
+            <AddTodo fetchData={fetchData} />
         </section>
     )
 }
