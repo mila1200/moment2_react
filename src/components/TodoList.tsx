@@ -3,6 +3,7 @@ import Todo from "./Todo"
 import AddTodo from "./AddTodo"
 import "./TodoList.css"
 
+//interface för poster. Id har ? då det är valfritt
 export interface TodoInterface {
     _id?: string,
     title: string,
@@ -17,6 +18,7 @@ function TodoList() {
     const [loading, setLoading] = useState<boolean>(false)
     const [error, setError] = useState<string | null>(null)
 
+    //körs en gång vid sidladdning
     useEffect(() => {
         fetchData();
     }, [])
@@ -49,6 +51,7 @@ function TodoList() {
             {error && <p>{error}</p>}
 
             {
+                //skriver ut poster. Laddar om listan vid uppdatering.
                 todos.map((todo) => (
                     <div className="todoContainer">
                     <Todo todo={todo} key={todo._id} onTodoUpdate={fetchData} />

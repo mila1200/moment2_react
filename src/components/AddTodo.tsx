@@ -17,8 +17,10 @@ function AddTodo({ fetchData }: { fetchData: Function }) {
         status: "Ej påbörjad",
     });
 
+    //state för felhantering
     const [error, setError] = useState<ErrorInterface>({})
 
+    //validerar inmatad data
     const validateForm = (data: TodoInterface) => {
 
         const validationError: ErrorInterface = {};
@@ -34,16 +36,21 @@ function AddTodo({ fetchData }: { fetchData: Function }) {
         return validationError;
     }
 
+
     const todoAdd = async (event: any) => {
+        //förhindrar sidomladdning
         event.preventDefault();
 
+        //validera data genom att anropa validateForm
         const validationError = validateForm(formData);
 
+        //uppdaterar errorstate om det finns valideringsfel
         if (Object.keys(validationError).length > 0) {
             setError(validationError);
         } else {
             setError({});
 
+            //post-anrop, laddar om lstan med todos, nollställer input
             try {
                 const res = await fetch("http://localhost:5000/addTodo", {
                     method: "POST",
@@ -71,6 +78,7 @@ function AddTodo({ fetchData }: { fetchData: Function }) {
         }
     };
 
+    //formulär som ändrar state vid förändring. När den submittas körs funktionen todoAdd
     return (
         <section className="formSection">
             <div className="formContainer">

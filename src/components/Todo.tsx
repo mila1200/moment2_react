@@ -6,11 +6,13 @@ function Todo({ todo, onTodoUpdate }: { todo: any, onTodoUpdate: Function }) {
     //errorstate
     const [error, setError] = useState<string | null>(null)
 
+    //körs när användaren ändrar status
     const updateTodo = async (e: any) => {
         let newStatus = e.target.value;
 
         const newTodo = { ...todo, status: newStatus };
 
+        //skickar put-förfrågan
         try {
             const res = await fetch("http://localhost:5000/todo/" + todo._id, {
                 method: "PUT",
