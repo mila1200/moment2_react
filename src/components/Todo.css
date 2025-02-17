@@ -1,6 +1,7 @@
 .todoArticle {
     margin: 1%;
     padding: 2%;
+    background-color: rgb(240, 240, 240);
 }
 
 .todoArticle h2, .todoArticle p, .todoArticle label, .todoArticle select {

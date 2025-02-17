@@ -53,9 +53,7 @@ function TodoList() {
             {
                 //skriver ut poster. Laddar om listan vid uppdatering.
                 todos.map((todo) => (
-                    <div className="todoContainer">
                     <Todo todo={todo} key={todo._id} onTodoUpdate={fetchData} />
-                    </div>
                 ))
             }
 
