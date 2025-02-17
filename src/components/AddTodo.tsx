@@ -3,6 +3,12 @@ import { TodoInterface } from "./TodoList";
 
 function AddTodo({fetchData}: {fetchData: Function}) {
 
+    //interface för felhantering
+    interface ErrorInterface {
+        title?: string,
+        description?: string
+    }
+
     //state för interfacet, importerat från TodoList
     const [formData, setFormData] = useState<TodoInterface>({
         title: "",
@@ -10,10 +16,32 @@ function AddTodo({fetchData}: {fetchData: Function}) {
         status: "Ej påbörjad",
     });
 
-    const [error, setError] = useState<string | null>(null)
+    const [error, setError] = useState<ErrorInterface>({})
     
+    const validateForm = (data: TodoInterface) => {
+        
+        const validationError: ErrorInterface = {};
+
+        if(!data.title && data.title.length < 3) {
+            validationError.title = "Titeln måste vara minst tre tecken lång";
+        }
+
+        if(data.description.length > 200) {
+            validationError.description = "Du får max använda 200 tecken.";
+        }
+
+        return validationError;
+    }
+
     const todoAdd = async (event: any) => {
         event.preventDefault();
+
+        const validationError = validateForm(formData);
+
+        if(Object.keys(validationError).length > 0) {
+            setError(validationError);
+        } else {
+            setError({});
 
         try {
             const res = await fetch("http://localhost:5000/addTodo", {
@@ -37,9 +65,9 @@ function AddTodo({fetchData}: {fetchData: Function}) {
             })
 
         } catch (error) {
-            setError("Det blev fel när du försökte lägga till poster");
+            setError({title: "Något gick fel."});
         }
-    };
+    }};
 
     return (
         <section>
@@ -47,9 +75,13 @@ function AddTodo({fetchData}: {fetchData: Function}) {
                 <label htmlFor="title">Titel:</label><br />
                 <input type="text" name="title" value={formData.title} onChange={(event) => setFormData({...formData, title: event.target.value})}/>
                 <br />
+                {error.title && <span>{error.title}</span>}
+                <br />
 
                 <label htmlFor="description">Beskrivning:</label><br />
                 <input type="text" name="description" value={formData.description} onChange={(event) => setFormData({...formData, description: event.target.value})}/>
+                <br />
+                {error.description && <span>{error.description}</span>}
                 <br />
 
                 <label htmlFor="status">Status:</label><br />

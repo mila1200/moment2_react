@@ -16,7 +16,7 @@ function DeleteButton({ todoId, onDelete }: { todoId: string; onDelete: Function
 
             onDelete();
         } catch (error) {
-            setError("Det blev fel");
+            setError("Det gick inte att radera posten");
         }
     }
 
