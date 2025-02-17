@@ -26,7 +26,7 @@ function Todo({ todo, onTodoUpdate }: { todo: any, onTodoUpdate: Function }) {
             onTodoUpdate();
 
         } catch (error) {
-            setError("Det blev ett fel vid uppdatering av poster...");
+            setError("Det blev ett fel vid uppdatering av poster.");
         }
     }
 
@@ -44,6 +44,8 @@ function Todo({ todo, onTodoUpdate }: { todo: any, onTodoUpdate: Function }) {
                     <option>Påbörjad</option>
                     <option>Avklarad</option>
                 </select>
+                <br />
+                {error && <span>{error}</span>}
             </form>
             <DeleteButton todoId={todo._id} onDelete={onTodoUpdate}/>
         </article>

@@ -24,6 +24,8 @@ function DeleteButton({ todoId, onDelete }: { todoId: string; onDelete: Function
   return (
     <>
     <button onClick={deleteTodo}>Radera</button>
+    <br />
+    {error && <span>{error}</span>}
     </>
   )
 }
